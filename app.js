@@ -20,7 +20,7 @@ http.createServer(function(request, response) {
     }
     
     if (fs.statSync(filename).isDirectory()) filename += '/index.html';
-
+    console.log(filename);
     fs.readFile(filename, function(err, file) {
       if(err) {        
         response.writeHead(500, {"Content-Type": "text/plain"});
