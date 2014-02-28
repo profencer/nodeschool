@@ -34,6 +34,6 @@ http.createServer(function(request, response) {
       response.end();
     });
   });
-}).l1isten(port,ipaddress);
+}).listen(port,ipaddress);
 
 console.log("Static file server running at\n  => http://localhost:" + port + "/\nCTRL + C to shutdown");
