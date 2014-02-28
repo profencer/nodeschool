@@ -10,7 +10,7 @@ http.createServer(function(request, response) {
 
   var uri = url.parse(request.url).pathname
     , filename = path.join(process.cwd(), uri);
-
+  if (fs.statSync(filename).isDirectory()) filename += '/index.html';
   path.exists(filename, function(exists) {
     if(!exists) {
       response.writeHead(404, {"Content-Type": "text/plain"});
@@ -19,7 +19,7 @@ http.createServer(function(request, response) {
       return;
     }
     
-    if (fs.statSync(filename).isDirectory()) filename += '/index.html';
+    
     console.log(filename);
     fs.readFile(filename, function(err, file) {
       if(err) {        
