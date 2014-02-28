@@ -30,7 +30,7 @@ http.createServer(function(request, response) {
       }
 	  
     });
-	   if(req.url.indexOf('.html') != -1){ //req.url has the pathname, check if it conatins '.html'
+	   if(request.url.indexOf('.html') != -1){ //req.url has the pathname, check if it conatins '.html'
 
       fs.readFile(filename, function (err, data) {
         if (err) console.log(err);
@@ -41,7 +41,7 @@ http.createServer(function(request, response) {
 
     }
 
-    if(req.url.indexOf('.js') != -1){ //req.url has the pathname, check if it conatins '.js'
+    if(request.url.indexOf('.js') != -1){ //req.url has the pathname, check if it conatins '.js'
 
       fs.readFile(filename, function (err, data) {
         if (err) console.log(err);
@@ -52,7 +52,7 @@ http.createServer(function(request, response) {
 
     }
 
-    if(req.url.indexOf('.css') != -1){ //req.url has the pathname, check if it conatins '.css'
+    if(request.url.indexOf('.css') != -1){ //req.url has the pathname, check if it conatins '.css'
 
       fs.readFile(filename, function (err, data) {
         if (err) console.log(err);
