@@ -2,8 +2,9 @@
 var http = require("http"),
     url = require("url"),
     path = require("path"),
-    fs = require("fs")
-    port = 80;
+    fs = require("fs");
+var ipaddress = process.env.OPENSHIFT_NODEJS_IP || "127.0.0.1";
+var port = process.env.OPENSHIFT_NODEJS_PORT || 8080;
 
 http.createServer(function(request, response) {
 
