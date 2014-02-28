@@ -18,7 +18,7 @@ http.createServer(function(request, response) {
       response.end();
       return;
     }
-
+    
     if (fs.statSync(filename).isDirectory()) filename += '/index.html';
 
     fs.readFile(filename, "binary", function(err, file) {
@@ -29,7 +29,7 @@ http.createServer(function(request, response) {
         return;
       }
 
-      response.writeHead(200, {"Content-Type": "text/html; charset=utf-8"});
+      response.writeHead(200, {"Content-Type": "charset=utf-8"});
       response.write(file, "binary");
       response.end();
     });
