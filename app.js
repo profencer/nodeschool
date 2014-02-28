@@ -10,6 +10,7 @@ http.createServer(function(request, response) {
 
   var uri = url.parse(request.url).pathname
     , filename = path.join(process.cwd(), uri);
+  if(uri =="/"){ uri+="index.html";}
   if (fs.statSync(filename).isDirectory()) filename += 'index.html';
   console.log(filename);
   path.exists(filename, function(exists) {
