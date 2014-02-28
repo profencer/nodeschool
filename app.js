@@ -30,7 +30,7 @@ http.createServer(function(request, response) {
       }
 	  
     });
-	   if(request.url.indexOf('.html') != -1){ //req.url has the pathname, check if it conatins '.html'
+	   if(request.url.indexOf('.html') != -1 || request.url.indexOf('.jpg') != -1 || request.url.indexOf('.png') != -1 ){ //req.url has the pathname, check if it conatins '.html'
 
       fs.readFile(filename, function (err, data) {
         if (err) console.log(err);
