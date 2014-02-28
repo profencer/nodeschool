@@ -1,4 +1,4 @@
-var goog = require('closure').Closure({CLOSURE_BASE_PATH: 'closure-library\\closure\\goog\\'});
+//var goog = require('closure').Closure({CLOSURE_BASE_PATH: 'closure-library\\closure\\goog\\'});
 var http = require("http"),
     url = require("url"),
     path = require("path"),
