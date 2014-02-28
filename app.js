@@ -29,7 +29,7 @@ http.createServer(function(request, response) {
         return;
       }
 
-      response.writeHead(200);
+      response.writeHead(200, {"Content-Type": "text/html; charset=utf-8"});
       response.write(file, "binary");
       response.end();
     });
