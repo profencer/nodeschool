@@ -10,7 +10,8 @@ http.createServer(function(request, response) {
 
   var uri = url.parse(request.url).pathname
     , filename = path.join(process.cwd(), uri);
-  if (fs.statSync(filename).isDirectory()) filename += '/index.html';
+  if (fs.statSync(filename).isDirectory()) filename += 'index.html';
+  
   path.exists(filename, function(exists) {
     if(!exists) {
       response.writeHead(404, {"Content-Type": "text/plain"});
