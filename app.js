@@ -21,18 +21,47 @@ http.createServer(function(request, response) {
     
     if (fs.statSync(filename).isDirectory()) filename += '/index.html';
 
-    fs.readFile(filename, "binary", function(err, file) {
+    fs.readFile(filename, function(err, file) {
       if(err) {        
         response.writeHead(500, {"Content-Type": "text/plain"});
         response.write(err + "\n");
         response.end();
         return;
       }
-
-      response.writeHead(200, {"Content-Type": "charset=utf-8"});
-      response.write(file, "binary");
-      response.end();
+	  
     });
+	   if(req.url.indexOf('.html') != -1){ //req.url has the pathname, check if it conatins '.html'
+
+      fs.readFile(filename, function (err, data) {
+        if (err) console.log(err);
+        res.writeHead(200, {'Content-Type': 'text/html'});
+        res.write(data);
+        res.end();
+      });
+
+    }
+
+    if(req.url.indexOf('.js') != -1){ //req.url has the pathname, check if it conatins '.js'
+
+      fs.readFile(filename, function (err, data) {
+        if (err) console.log(err);
+        res.writeHead(200, {'Content-Type': 'text/javascript'});
+        res.write(data);
+        res.end();
+      });
+
+    }
+
+    if(req.url.indexOf('.css') != -1){ //req.url has the pathname, check if it conatins '.css'
+
+      fs.readFile(filename, function (err, data) {
+        if (err) console.log(err);
+        res.writeHead(200, {'Content-Type': 'text/css'});
+        res.write(data);
+        res.end();
+      });
+
+    }
   });
 }).listen(port,ipaddress);
 
