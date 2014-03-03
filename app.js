@@ -7,10 +7,10 @@ var http = require("http"),
     fs = require("fs");
 var ipaddress = process.env.OPENSHIFT_NODEJS_IP || "127.0.0.1";
 var port = process.env.OPENSHIFT_NODEJS_PORT || 8080;
-var app = express.createServer();
-app.set(‘view engine’, ‘ejs’);
+var app = express();
+app.set('view engine', 'ejs');
 app.get("/", function(req, res){
-res.render(‘eshop.ejs’, {
+res.render('eshop.ejs', {
 layout:false,
 locals: { errorMessage: "Error: password wrong." }
 });
