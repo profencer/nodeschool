@@ -1,11 +1,22 @@
 //var goog = require('closure').Closure({CLOSURE_BASE_PATH: 'closure-library\\closure\\goog\\'});
+var express = require('express');
+
 var http = require("http"),
     url = require("url"),
     path = require("path"),
     fs = require("fs");
 var ipaddress = process.env.OPENSHIFT_NODEJS_IP || "127.0.0.1";
 var port = process.env.OPENSHIFT_NODEJS_PORT || 8080;
-http.createServer(function(request, response) {
+var app = express.createServer();
+app.set(‘view engine’, ‘ejs’);
+app.get("/", function(req, res){
+res.render(‘eshop.ejs’, {
+layout:false,
+locals: { errorMessage: "Error: password wrong." }
+});
+});
+app.listen(port);
+/*http.createServer(function(request, response) {
   var uri = url.parse(request.url).pathname
     , filename = path.join(process.cwd(), uri);
   //if(uri =="/"){ uri+="index.html";}
@@ -63,5 +74,5 @@ http.createServer(function(request, response) {
 		}
 	}
   });
-}).listen(port,ipaddress);
+}).listen(port,ipaddress); */
 console.log("Static file server running at\n  => http://localhost:" + port + "/\nCTRL + C to shutdown");
