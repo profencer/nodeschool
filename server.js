@@ -8,9 +8,71 @@ var http = require("http"),
 var ipaddress = process.env.OPENSHIFT_NODEJS_IP || "127.0.0.1";
 var port = process.env.OPENSHIFT_NODEJS_PORT || 8080;
 var app = express();
+local = 0;
+if(!local){
+var mysql   = require('mysql');
+connectionpool = mysql.createPool({
+        host     : $OPENSHIFT_MYSQL_DB_HOST + ":" + $OPENSHIFT_MYSQL_DB_PORT,
+        user     : 'adminmFSIKHm',
+        password : 'wJ1S2_IQpJ3k',
+        database : 'nodejs'
+    });
+}
 //app.set('view engine', 'ejs');
 app.get("/", function(req, res){
-err = req.query['username'] || "Не пришло ничего"
+console.log(req.query['username']);
+err = req.query['username'] || "Не пришло ничего";
+connectionpool.getConnection(function(err, connection) {
+        if (err) {
+            console.error('CONNECTION error: ',err);
+            res.statusCode = 503;
+              res.send({
+                result: 'error',
+                err:    err.code
+            });
+        } else {
+            // query the database using connection
+			connection.query('CREATE TABLE "products" ( "ID" INTEGER AUTOINCREMENT PRIMARY KEY, "NAME" TEXT, "PRICE" INTEGER )', req.params.id, function(err, rows, fields) {
+                if (err) {
+                    console.error(err);
+                    res.statusCode = 500;
+                    res.send({
+                        result: 'error',
+                        err:    err.code
+                    });
+                }else{
+					//код успешного выполнения
+					console.log("DB created");
+					connection.release();
+				}
+            });
+			connection.query('INSERT INTO "products" VALUES( NULL, "ТОВАРЧИК", 1200)', req.params.id, function(err, rows, fields) {
+                if (err) {
+                    console.error(err);
+                    res.statusCode = 500;
+                    res.send({
+                        result: 'error',
+                        err:    err.code
+                    });
+                }else{
+					console.log("Row created");
+				}
+                connection.release();
+            });
+			connection.query('SELECT * FROM "products"', req.params.id, function(err, rows, fields) {
+                if (err) {
+                    console.error(err);
+                    res.statusCode = 500;
+                    res.send({
+                        result: 'error',
+                        err:    err.code
+                    });
+                }else{
+					console.log(rows);
+				}
+                connection.release();
+            });
+        }
 res.render('eshop.ejs', {
 layout:false,
 locals: { errorMessage: err }
