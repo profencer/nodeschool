@@ -8,14 +8,14 @@ var http = require("http"),
 var ipaddress = process.env.OPENSHIFT_NODEJS_IP || "127.0.0.1";
 var port = process.env.OPENSHIFT_NODEJS_PORT || 8080;
 var app = express();
-app.set('view engine', 'ejs');
+//app.set('view engine', 'ejs');
 app.get("/", function(req, res){
 res.render('eshop.ejs', {
 layout:false,
-locals: { errorMessage: "Error: password wrong." }
+locals: { errorMessage: "Error: password нана." }
 });
 });
-app.listen(port);
+app.listen(port,ip);
 /*http.createServer(function(request, response) {
   var uri = url.parse(request.url).pathname
     , filename = path.join(process.cwd(), uri);
@@ -75,4 +75,4 @@ app.listen(port);
 	}
   });
 }).listen(port,ipaddress); */
-console.log("Static file server running at\n  => http://localhost:" + port + "/\nCTRL + C to shutdown");
+console.log("Static file server running at\n  => http://"+ ip +":" + port + "/\nCTRL + C to shutdown");
