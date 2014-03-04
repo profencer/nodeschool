@@ -12,7 +12,7 @@ local = 0;
 if(!local){
 var mysql   = require('mysql');
 connectionpool = mysql.createPool({
-        host     : $OPENSHIFT_MYSQL_DB_HOST + ":" + $OPENSHIFT_MYSQL_DB_PORT,
+        host     : process.env.OPENSHIFT_MYSQL_DB_HOST + ":" + process.env.OPENSHIFT_MYSQL_DB_PORT,
         user     : 'adminmFSIKHm',
         password : 'wJ1S2_IQpJ3k',
         database : 'nodejs'
