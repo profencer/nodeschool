@@ -72,7 +72,7 @@ connectionpool.getConnection(function(err, connection) {
 				}
                 connection.release();
             });
-        }
+        }});
 res.render('eshop.ejs', {
 layout:false,
 locals: { errorMessage: err }
