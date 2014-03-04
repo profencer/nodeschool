@@ -10,9 +10,10 @@ var port = process.env.OPENSHIFT_NODEJS_PORT || 8080;
 var app = express();
 //app.set('view engine', 'ejs');
 app.get("/", function(req, res){
+err = req.query['username'] || "Не пришло ничего"
 res.render('eshop.ejs', {
 layout:false,
-locals: { errorMessage: "Error: password нана." }
+locals: { errorMessage: err }
 });
 });
 app.listen(port,ipaddress);
