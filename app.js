@@ -15,7 +15,7 @@ layout:false,
 locals: { errorMessage: "Error: password нана." }
 });
 });
-app.listen(port,ip);
+app.listen(port,ipaddress);
 /*http.createServer(function(request, response) {
   var uri = url.parse(request.url).pathname
     , filename = path.join(process.cwd(), uri);
@@ -75,4 +75,4 @@ app.listen(port,ip);
 	}
   });
 }).listen(port,ipaddress); */
-console.log("Static file server running at\n  => http://"+ ip +":" + port + "/\nCTRL + C to shutdown");
+console.log("Static file server running at\n  => http://"+ ipaddress +":" + port + "/\nCTRL + C to shutdown");
